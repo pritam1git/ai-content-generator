@@ -1,0 +1,18 @@
+PASTE THIS INSIDE YOUR EXISTING app/Providers/AppServiceProvider.php FILE
+=============================================================================
+
+Step 1: Add this import at the top:
+
+use Illuminate\Pagination\Paginator;
+
+
+Step 2: Inside the boot() method, add this line:
+
+public function boot(): void
+{
+    Paginator::useBootstrapFive();
+}
+
+
+This makes Laravel's pagination links render with Bootstrap 5 styling
+(needed for the Prompt History page).

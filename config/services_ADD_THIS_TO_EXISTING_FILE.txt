@@ -1,0 +1,24 @@
+PASTE THIS INSIDE YOUR EXISTING config/services.php FILE
+===========================================================
+
+Open config/services.php, find the main "return [ ... ];" array,
+and add this entry inside it (anywhere, e.g. at the end before the
+closing "];"):
+
+    'openai' => [
+        'api_key' => env('OPENAI_API_KEY'),
+    ],
+
+
+Example of how the end of the file should look:
+
+    ...
+    'postmark' => [
+        'token' => env('POSTMARK_TOKEN'),
+    ],
+
+    'openai' => [
+        'api_key' => env('OPENAI_API_KEY'),
+    ],
+
+];

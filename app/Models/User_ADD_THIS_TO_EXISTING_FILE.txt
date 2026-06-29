@@ -1,0 +1,18 @@
+PASTE THIS INSIDE YOUR EXISTING app/Models/User.php FILE
+===========================================================
+
+Step 1: Add this import at the top with the other "use" statements:
+
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+
+Step 2: Add this method inside the User class (anywhere before the final closing brace "}"):
+
+public function promptHistories(): HasMany
+{
+    return $this->hasMany(PromptHistory::class);
+}
+
+
+That's it. Your User.php already exists (created by Breeze), so we don't
+overwrite it -- just add these two snippets manually.
