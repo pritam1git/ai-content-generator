@@ -9,6 +9,15 @@
     <div class="mb-4">
         <h4 class="fw-bold">Welcome back, {{ Auth::user()->name }} 👋</h4>
         <p class="text-muted">Here's a quick overview of your AI content activity.</p>
+        @if(config('services.groq.api_key'))
+            <span class="badge bg-success">
+                🟢 Groq AI Live
+            </span>
+        @else
+            <span class="badge bg-warning">
+                🟡 Demo AI Mode
+            </span>
+        @endif
     </div>
 
     <!-- Stats Cards -->
