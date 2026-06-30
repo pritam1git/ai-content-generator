@@ -10,15 +10,20 @@ class OpenAIService
 {
     protected ?string $apiKey = null;
 
-    protected string $baseUrl = 'https://api.openai.com/v1';
+    protected string $baseUrl = 'https://api.groq.com/openai/v1';
 
-    protected string $model = 'gpt-4o-mini';
+    protected string $model;
 
     public bool $demoMode = false;
 
     public function __construct()
     {
-        $this->apiKey = config('services.openai.api_key');
+        $this->apiKey = config('services.groq.api_key');
+        $this->model = config('services.groq.model');
+
+        if (empty($this->apiKey)) {
+            throw new Exception('GROQ_API_KEY is missing.');
+        }
     }
 
     /**

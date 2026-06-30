@@ -30,6 +30,10 @@ return [
     'openai' => [
         'api_key' => env('OPENAI_API_KEY'),
     ],
+    'groq' => [
+    'api_key' => env('GROQ_API_KEY'),
+    'model'   => env('GROQ_MODEL', 'openai/gpt-oss-120b'),
+    ],
     'slack' => [
         'notifications' => [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),

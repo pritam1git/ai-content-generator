@@ -76,4 +76,20 @@ Route::get('/chat-test', function () {
     );
 });
 
+Route::get('/groq-test', function () {
+
+    $response = \Illuminate\Support\Facades\Http::withToken(env('GROQ_API_KEY'))
+        ->post('https://api.groq.com/openai/v1/chat/completions', [
+            'model' => env('GROQ_MODEL'),
+            'messages' => [
+                [
+                    'role' => 'user',
+                    'content' => 'Hello, who are you?'
+                ]
+            ]
+        ]);
+
+    return response()->json($response->json());
+});
+
 require __DIR__.'/auth.php';
