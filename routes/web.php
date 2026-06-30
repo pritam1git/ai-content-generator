@@ -6,6 +6,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\BlogGeneratorController;
 use App\Http\Controllers\ProductDescriptionController;
 use App\Http\Controllers\PromptHistoryController;
+use App\Services\OpenAIService;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,6 +48,32 @@ Route::middleware('auth')->group(function () {
     // Prompt History
     Route::get('/history', [PromptHistoryController::class, 'index'])->name('history.index');
     Route::delete('/history/{history}', [PromptHistoryController::class, 'destroy'])->name('history.destroy');
+});
+Route::get('/test-openai', function (
+    OpenAIService $openai
+) {
+
+    return response()->json(
+        $openai->test()
+    );
+});
+Route::get('/chat-test', function () {
+
+    $response = Http::withToken(env('OPENAI_API_KEY'))
+        ->post('https://api.openai.com/v1/chat/completions', [
+            'model' => 'gpt-4o-mini',
+            'messages' => [
+                [
+                    'role' => 'user',
+                    'content' => 'Hello'
+                ]
+            ]
+        ]);
+
+    dd(
+        $response->status(),
+        $response->json()
+    );
 });
 
 require __DIR__.'/auth.php';
